@@ -2,10 +2,16 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.CreateTodo;
 import com.example.demo.entity.Todo;
+import com.example.demo.entity.UpdateTodo;
 import com.example.demo.service.TodoService;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -15,8 +21,6 @@ public class TodoController {
     public TodoController(TodoService todoService) {
         this.todoService = todoService;
     }
-
-
     @GetMapping("/todos")
     public List<TodoResponse> getAll() {
         List<Todo> todos = todoService.findAll();
@@ -33,4 +37,10 @@ public class TodoController {
     public void create(@RequestBody CreateTodo createTodo){
         todoService.create(createTodo);
     }
+
+    @PatchMapping("/todos/{id}")
+    public void update(@PathVariable int id, @RequestBody UpdateTodo updateTodo){
+        todoService.update(id, updateTodo.getTitle(), updateTodo.getDescription());
+    }
+
 }

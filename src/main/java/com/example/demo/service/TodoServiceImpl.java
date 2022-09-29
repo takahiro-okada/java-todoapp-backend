@@ -2,10 +2,10 @@ package com.example.demo.service;
 
 import com.example.demo.entity.CreateTodo;
 import com.example.demo.entity.Todo;
+import com.example.demo.entity.UpdateTodo;
 import com.example.demo.repository.TodoMapper;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 @Service
 public class TodoServiceImpl implements TodoService {
@@ -22,12 +22,18 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public Todo findById(int id){
+    public Todo findById(int id) {
         return todoMapper.findById(id);
     }
 
     @Override
-    public void create(CreateTodo createTodo){
+    public void create(CreateTodo createTodo) {
         todoMapper.createTodo(createTodo);
     }
+
+    @Override
+    public void update(int id, String title, String description) {
+        todoMapper.updateTodo(id,title,description);
+    }
+
 }
