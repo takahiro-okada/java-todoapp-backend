@@ -3,6 +3,8 @@ package com.example.demo.repository;
 import com.example.demo.entity.CreateTodo;
 import com.example.demo.entity.Todo;
 import java.util.List;
+import java.util.Optional;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -16,7 +18,7 @@ public interface TodoMapper {
     List<Todo> findAll();
 
     @Select("SELECT * FROM todos WHERE id = #{id}")
-    Todo findById(int id);
+    Optional<Todo> findById(int id);
 
     @Insert("insert into todos (title,description) values (#{title},#{description})")
     void createTodo(CreateTodo createTodo);

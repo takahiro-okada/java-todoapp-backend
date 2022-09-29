@@ -1,10 +1,11 @@
 package com.example.demo.service;
 
+import com.example.demo.controller.ResourceNotFoundException;
 import com.example.demo.entity.CreateTodo;
 import com.example.demo.entity.Todo;
-import com.example.demo.entity.UpdateTodo;
 import com.example.demo.repository.TodoMapper;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,7 +24,12 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public Todo findById(int id) {
-        return todoMapper.findById(id);
+        Optional<Todo> todo = this.todoMapper.findById(id);
+        if(todo.isPresent()){
+            return todo.get();
+        } else {
+            throw new ResourceNotFoundException("resouce not found");
+        }
     }
 
     @Override
