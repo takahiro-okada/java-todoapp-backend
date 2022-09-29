@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.entity.CreateTodo;
 import com.example.demo.entity.Todo;
-import com.example.demo.entity.UpdateTodo;
 import java.util.List;
 
 public interface TodoService {
@@ -13,4 +12,5 @@ public interface TodoService {
 
     void update(int id, String title, String description);
 
+    void deleteTodo(int id);
 }

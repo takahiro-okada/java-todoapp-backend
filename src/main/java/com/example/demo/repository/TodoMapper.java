@@ -30,4 +30,8 @@ public interface TodoMapper {
     void updateTodo(@Param("id") int id, @Param("title") String title,
         @Param("description") String description);
 
+    @Delete("DELETE FROM todos"
+        + " WHERE"
+        + "  id = #{id}")
+    void deleteTodo(int id);
 }

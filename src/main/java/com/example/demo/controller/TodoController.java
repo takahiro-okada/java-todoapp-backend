@@ -6,6 +6,7 @@ import com.example.demo.entity.UpdateTodo;
 import com.example.demo.service.TodoService;
 import java.util.List;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +42,11 @@ public class TodoController {
     @PatchMapping("/todos/{id}")
     public void update(@PathVariable int id, @RequestBody UpdateTodo updateTodo){
         todoService.update(id, updateTodo.getTitle(), updateTodo.getDescription());
+    }
+
+    @DeleteMapping("/todos/{id}")
+    public void delete(@PathVariable int id){
+        todoService.deleteTodo(id);
     }
 
 }
