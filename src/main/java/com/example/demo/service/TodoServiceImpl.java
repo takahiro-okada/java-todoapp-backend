@@ -19,4 +19,9 @@ public class TodoServiceImpl implements TodoService {
     public List<Todo> findAll() {
         return todoMapper.findAll();
     }
+
+    @Override
+    public Todo findById(int id){
+        return todoMapper.findById(id);
+    }
 }

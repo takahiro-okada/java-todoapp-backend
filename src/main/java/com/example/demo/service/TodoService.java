@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface TodoService {
     List<Todo> findAll();
+    Todo findById(int id);
 }
