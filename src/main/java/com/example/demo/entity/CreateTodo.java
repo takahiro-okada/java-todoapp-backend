@@ -1,17 +1,9 @@
-package com.example.demo.controller;
+package com.example.demo.entity;
 
-import com.example.demo.entity.Todo;
-
-public class TodoResponse {
+public class CreateTodo {
     private int id;
     private String title;
     private String description;
-
-    public TodoResponse(Todo todos) {
-            this.id = todos.getId();
-            this.title = todos.getTitle();
-            this.description = todos.getDescription();
-    }
 
     public int getId() {
         return id;
@@ -37,7 +29,7 @@ public class TodoResponse {
         this.description = description;
     }
 
-    public TodoResponse(int id, String title, String description) {
+    public CreateTodo(int id, String title, String description) {
         this.id = id;
         this.title = title;
         this.description = description;

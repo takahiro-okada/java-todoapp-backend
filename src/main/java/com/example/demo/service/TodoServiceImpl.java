@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.entity.CreateTodo;
 import com.example.demo.entity.Todo;
 import com.example.demo.repository.TodoMapper;
 import org.springframework.stereotype.Service;
@@ -23,5 +24,10 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public Todo findById(int id){
         return todoMapper.findById(id);
+    }
+
+    @Override
+    public void create(CreateTodo createTodo){
+        todoMapper.createTodo(createTodo);
     }
 }

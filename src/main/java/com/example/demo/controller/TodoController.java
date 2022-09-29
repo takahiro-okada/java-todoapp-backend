@@ -1,14 +1,14 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.CreateTodo;
 import com.example.demo.entity.Todo;
 import com.example.demo.service.TodoService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class TodoController {
     private TodoService todoService;
 
@@ -24,10 +24,13 @@ public class TodoController {
     }
 
     @GetMapping("/todos/{id}")
-    public TodoResponse getProductById(
-            @PathVariable int id
-    ) {
+    public TodoResponse getProductById(@PathVariable int id) {
         Todo todo = todoService.findById(id);
         return new TodoResponse(todo);
+    }
+
+    @PostMapping("/todos")
+    public void create(@RequestBody CreateTodo createTodo){
+        todoService.create(createTodo);
     }
 }
