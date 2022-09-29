@@ -10,4 +10,8 @@ import java.util.List;
 public interface TodoMapper {
     @Select("SELECT * FROM todos")
     List<Todo> findAll();
+
+    @Select("SELECT * FROM todos WHERE id = #{id}")
+    Todo findById(int id);
+
 }
