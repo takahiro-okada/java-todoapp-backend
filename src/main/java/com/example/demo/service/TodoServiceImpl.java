@@ -33,8 +33,8 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public void create(CreateTodo createTodo) {
-        todoMapper.createTodo(createTodo);
+    public int create(CreateTodo createTodo) {
+        return todoMapper.createTodo(createTodo);
     }
 
     @Override

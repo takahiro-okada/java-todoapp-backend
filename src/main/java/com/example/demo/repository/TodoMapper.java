@@ -21,7 +21,7 @@ public interface TodoMapper {
     Optional<Todo> findById(int id);
 
     @Insert("insert into todos (title,description) values (#{title},#{description})")
-    void createTodo(CreateTodo createTodo);
+    int createTodo(CreateTodo createTodo);
 
     @Update("UPDATE todos"
         + " SET"

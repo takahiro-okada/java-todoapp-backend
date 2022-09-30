@@ -8,7 +8,7 @@ public interface TodoService {
     List<Todo> findAll();
     Todo findById(int id);
 
-    void create(CreateTodo createTodo);
+    int create(CreateTodo createTodo);
 
     void update(int id, String title, String description);
 

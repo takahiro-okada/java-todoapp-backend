@@ -41,8 +41,9 @@ public class TodoController {
     }
 
     @PostMapping("/todos")
-    public void create(@RequestBody CreateTodo createTodo){
-        todoService.create(createTodo);
+    public String create(@RequestBody CreateTodo createTodo){
+        int createdNumber = todoService.create(createTodo);
+        return createdNumber + "件が正常に投稿されました！";
     }
 
     @PatchMapping("/todos/{id}")
