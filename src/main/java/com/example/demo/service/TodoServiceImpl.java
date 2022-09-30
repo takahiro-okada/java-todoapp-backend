@@ -38,13 +38,18 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public void update(int id, String title, String description) {
-        todoMapper.updateTodo(id,title,description);
+    public int update(int id, String title, String description) {
+      return  todoMapper.updateTodo(id,title,description);
     }
 
     @Override
-    public void deleteTodo(int id){
-        todoMapper.deleteTodo(id);
+    public int deleteTodo(int id){
+        Optional<Todo> todo = this.todoMapper.findById(id);
+        if(todo.isPresent()){
+            return todoMapper.deleteTodo(id);
+        } else{
+            throw new ResourceNotFoundException("resouce not found");
+        }
     }
 
 }

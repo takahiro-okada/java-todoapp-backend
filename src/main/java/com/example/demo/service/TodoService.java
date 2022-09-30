@@ -10,7 +10,7 @@ public interface TodoService {
 
     int create(CreateTodo createTodo);
 
-    void update(int id, String title, String description);
+    int update(int id, String title, String description);
 
-    void deleteTodo(int id);
+    int deleteTodo(int id);
 }

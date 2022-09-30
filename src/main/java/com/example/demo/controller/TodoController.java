@@ -47,13 +47,15 @@ public class TodoController {
     }
 
     @PatchMapping("/todos/{id}")
-    public void update(@PathVariable int id, @RequestBody UpdateTodo updateTodo){
-        todoService.update(id, updateTodo.getTitle(), updateTodo.getDescription());
+    public String update(@PathVariable int id, @RequestBody UpdateTodo updateTodo){
+        int updatedNumber = todoService.update(id, updateTodo.getTitle(), updateTodo.getDescription());
+        return updatedNumber + "件が正常に更新されました！";
     }
 
     @DeleteMapping("/todos/{id}")
-    public void delete(@PathVariable int id){
-        todoService.deleteTodo(id);
+    public String delete(@PathVariable int id){
+        int deletedNumber = todoService.deleteTodo(id);
+        return deletedNumber + "件が正常に削除されました！";
     }
 
     @ExceptionHandler(value = ResourceNotFoundException.class)
