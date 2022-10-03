@@ -28,6 +28,25 @@ public class TodoController {
     public TodoController(TodoService todoService) {
         this.todoService = todoService;
     }
+
+    static String execute(int i) {
+        if (i % 15 == 0) {
+            return "FizzBuzz";
+        }
+
+        if (i % 3 == 0) {
+            return "Fizz";
+        }
+        if (i % 5 == 0) {
+            return "Buzz";
+        }
+        return String.valueOf(i);
+    }
+
+    static String sayHello(){
+        return "Hello";
+    }
+
     @GetMapping("/todos")
     public List<TodoResponse> getAll() {
         List<Todo> todos = todoService.findAll();
