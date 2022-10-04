@@ -1,36 +1,37 @@
 package com.example.demo.entity;
 
 public class CreateTodo {
-    private int id;
-    private String title;
-    private String description;
+  private int id;
+  private String title;
+  private String description;
 
-    public int getId() {
-        return id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getTitle() {
-        return title;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public CreateTodo(int id, String title, String description) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public CreateTodo(int id, String title, String description) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
+  }
 }

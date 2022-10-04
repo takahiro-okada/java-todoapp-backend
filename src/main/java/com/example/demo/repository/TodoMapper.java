@@ -13,27 +13,27 @@ import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface TodoMapper {
+    
+  @Select("SELECT * FROM todos")
+  List<Todo> findAll();
 
-    @Select("SELECT * FROM todos")
-    List<Todo> findAll();
+  @Select("SELECT * FROM todos WHERE id = #{id}")
+  Optional<Todo> findById(int id);
 
-    @Select("SELECT * FROM todos WHERE id = #{id}")
-    Optional<Todo> findById(int id);
+  @Insert("insert into todos (title,description) values (#{title},#{description})")
+  int createTodo(CreateTodo createTodo);
 
-    @Insert("insert into todos (title,description) values (#{title},#{description})")
-    int createTodo(CreateTodo createTodo);
+  @Update("UPDATE todos"
+      + " SET"
+      + "  title = #{title},"
+      + "  description = #{description}"
+      + " WHERE"
+      + "  id = #{id}")
+  int updateTodo(@Param("id") int id, @Param("title") String title,
+                 @Param("description") String description);
 
-    @Update("UPDATE todos"
-        + " SET"
-        + "  title = #{title},"
-        + "  description = #{description}"
-        + " WHERE"
-        + "  id = #{id}")
-    int updateTodo(@Param("id") int id, @Param("title") String title,
-        @Param("description") String description);
-
-    @Delete("DELETE FROM todos"
-        + " WHERE"
-        + "  id = #{id}")
-    int deleteTodo(int id);
+  @Delete("DELETE FROM todos"
+      + " WHERE"
+      + "  id = #{id}")
+  int deleteTodo(int id);
 }

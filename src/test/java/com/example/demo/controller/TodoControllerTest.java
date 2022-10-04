@@ -1,6 +1,7 @@
 package com.example.demo.controller;
-import static org.hamcrest.MatcherAssert.assertThat;
+
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,15 +22,15 @@ public class TodoControllerTest {
       "10,     Buzz",
       "15, FizzBuzz"
   })
-  void test_fizzBuzz_1(int input, String output){
+  void test_fizzBuzz_1(int input, String output) {
     String result = TodoController.execute(input);
-    assertThat(result ,is(output));
+    assertThat(result, is(output));
   }
 
   @Test
-  void test_sayhello(){
+  void test_sayhello() {
     String result = TodoController.sayHello();
-    assertThat(result,is(result));
+    assertThat(result, is(result));
   }
 
 }

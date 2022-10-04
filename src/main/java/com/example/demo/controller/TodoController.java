@@ -23,70 +23,70 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins = "*")
 public class TodoController {
-    private TodoService todoService;
+  private final TodoService todoService;
 
-    public TodoController(TodoService todoService) {
-        this.todoService = todoService;
+  public TodoController(TodoService todoService) {
+    this.todoService = todoService;
+  }
+
+  static String execute(int i) {
+    if (i % 15 == 0) {
+      return "FizzBuzz";
     }
 
-    static String execute(int i) {
-        if (i % 15 == 0) {
-            return "FizzBuzz";
-        }
-
-        if (i % 3 == 0) {
-            return "Fizz";
-        }
-        if (i % 5 == 0) {
-            return "Buzz";
-        }
-        return String.valueOf(i);
+    if (i % 3 == 0) {
+      return "Fizz";
     }
-
-    static String sayHello(){
-        return "Hello";
+    if (i % 5 == 0) {
+      return "Buzz";
     }
+    return String.valueOf(i);
+  }
 
-    @GetMapping("/todos")
-    public List<TodoResponse> getAll() {
-        List<Todo> todos = todoService.findAll();
-        return todos.stream().map(TodoResponse::new).toList();
-    }
+  static String sayHello() {
+    return "Hello";
+  }
 
-    @GetMapping("/todos/{id}")
-    public TodoResponse getProductById(@PathVariable int id) {
-        Todo todo = todoService.findById(id);
-        return new TodoResponse(todo);
-    }
+  @GetMapping("/todos")
+  public List<TodoResponse> getAll() {
+    List<Todo> todos = todoService.findAll();
+    return todos.stream().map(TodoResponse::new).toList();
+  }
 
-    @PostMapping("/todos")
-    public String create(@RequestBody CreateTodo createTodo){
-        int createdNumber = todoService.create(createTodo);
-        return createdNumber + "件が正常に投稿されました！";
-    }
+  @GetMapping("/todos/{id}")
+  public TodoResponse getProductById(@PathVariable int id) {
+    Todo todo = todoService.findById(id);
+    return new TodoResponse(todo);
+  }
 
-    @PatchMapping("/todos/{id}")
-    public String update(@PathVariable int id, @RequestBody UpdateTodo updateTodo){
-        int updatedNumber = todoService.update(id, updateTodo.getTitle(), updateTodo.getDescription());
-        return updatedNumber + "件が正常に更新されました！";
-    }
+  @PostMapping("/todos")
+  public String create(@RequestBody CreateTodo createTodo) {
+    int createdNumber = todoService.create(createTodo);
+    return createdNumber + "件が正常に投稿されました！";
+  }
 
-    @DeleteMapping("/todos/{id}")
-    public String delete(@PathVariable int id){
-        int deletedNumber = todoService.deleteTodo(id);
-        return deletedNumber + "件が正常に削除されました！";
-    }
+  @PatchMapping("/todos/{id}")
+  public String update(@PathVariable int id, @RequestBody UpdateTodo updateTodo) {
+    int updatedNumber = todoService.update(id, updateTodo.getTitle(), updateTodo.getDescription());
+    return updatedNumber + "件が正常に更新されました！";
+  }
 
-    @ExceptionHandler(value = ResourceNotFoundException.class)
-    public ResponseEntity<Map<String, String>> handleNoResourceFound(
-        ResourceNotFoundException e, HttpServletRequest request) {
-        Map<String, String> body = Map.of(
-            "timestamp", ZonedDateTime.now().toString(),
-            "status", String.valueOf(HttpStatus.NOT_FOUND.value()),
-            "error", HttpStatus.NOT_FOUND.getReasonPhrase(),
-            "message", e.getMessage(),
-            "path", request.getRequestURI());
-        return new ResponseEntity(body, HttpStatus.NOT_FOUND);
-    }
+  @DeleteMapping("/todos/{id}")
+  public String delete(@PathVariable int id) {
+    int deletedNumber = todoService.deleteTodo(id);
+    return deletedNumber + "件が正常に削除されました！";
+  }
+
+  @ExceptionHandler(value = ResourceNotFoundException.class)
+  public ResponseEntity<Map<String, String>> handleNoResourceFound(
+      ResourceNotFoundException e, HttpServletRequest request) {
+    Map<String, String> body = Map.of(
+        "timestamp", ZonedDateTime.now().toString(),
+        "status", String.valueOf(HttpStatus.NOT_FOUND.value()),
+        "error", HttpStatus.NOT_FOUND.getReasonPhrase(),
+        "message", e.getMessage(),
+        "path", request.getRequestURI());
+    return new ResponseEntity(body, HttpStatus.NOT_FOUND);
+  }
 
 }
