@@ -17,13 +17,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 @ExtendWith(MockitoExtension.class)
 public class TodoServiceImplTest {
 
-  //  テスト対象のクラスのインスタンスに付与することでインスタンス内の@Injectされたメンバーのインスタンスに
-  //  @Mockのモックインスタンスを差し込むことができる
   @InjectMocks
   TodoServiceImpl todoServiceImpl;
 
-
-  //  モック化するクラスのインスタンスを生成
   @Mock
   TodoMapper todoMapper;
 
@@ -32,6 +28,5 @@ public class TodoServiceImplTest {
     doReturn(Optional.of(new Todo(1, "タイトル", "説明"))).when(todoMapper).findById(1);
     Todo actual = todoServiceImpl.findById(1);
     assertThat(actual).isEqualTo(new Todo(1, "タイトル", "説明"));
-
   }
 }

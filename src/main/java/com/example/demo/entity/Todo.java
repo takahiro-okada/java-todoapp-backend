@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import java.util.Objects;
+
 public class Todo {
   private int id;
   private String title;
@@ -27,6 +29,24 @@ public class Todo {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Todo todo = (Todo) o;
+    return id == todo.id && Objects.equals(title, todo.title) &&
+        Objects.equals(description, todo.description);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, title, description);
   }
 
   public Todo(int id, String title, String description) {
