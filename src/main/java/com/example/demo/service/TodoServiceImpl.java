@@ -24,7 +24,7 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public Todo findById(int id) {
-        Optional<Todo> todo = this.todoMapper.findById(id);
+        Optional<Todo> todo = todoMapper.findById(id);
         if(todo.isPresent()){
             return todo.get();
         } else {
