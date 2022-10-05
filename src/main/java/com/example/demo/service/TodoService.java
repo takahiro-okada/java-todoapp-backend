@@ -5,12 +5,13 @@ import com.example.demo.entity.Todo;
 import java.util.List;
 
 public interface TodoService {
-    List<Todo> findAll();
-    Todo findById(int id);
+  List<Todo> findAll();
 
-    int create(CreateTodo createTodo);
+  Todo findById(int id);
 
-    int update(int id, String title, String description);
+  int create(CreateTodo createTodo);
 
-    int deleteTodo(int id);
+  int update(int id, String title, String description);
+
+  int deleteTodo(int id);
 }
