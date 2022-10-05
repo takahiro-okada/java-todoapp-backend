@@ -13,14 +13,14 @@ import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface TodoMapper {
-    
+
   @Select("SELECT * FROM todos")
   List<Todo> findAll();
 
   @Select("SELECT * FROM todos WHERE id = #{id}")
   Optional<Todo> findById(int id);
 
-  @Insert("insert into todos (title,description) values (#{title},#{description})")
+  @Insert("INSERT INTO todos (title,description) values (#{title},#{description})")
   int createTodo(CreateTodo createTodo);
 
   @Update("UPDATE todos"
