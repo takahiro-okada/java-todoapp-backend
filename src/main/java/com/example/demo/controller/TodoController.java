@@ -5,6 +5,7 @@ import com.example.demo.entity.Todo;
 import com.example.demo.entity.UpdateTodo;
 import com.example.demo.service.TodoService;
 import java.time.ZonedDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -60,9 +61,11 @@ public class TodoController {
   }
 
   @PostMapping("/todos")
-  public String create(@RequestBody CreateTodo createTodo) {
+  public ResponseEntity<Map<String, String>> create(@RequestBody CreateTodo createTodo) {
     int createdNumber = todoService.create(createTodo);
-    return createdNumber + "件が正常に投稿されました！";
+    Map<String, String> message = new HashMap<String, String>();
+    message.put("message", createdNumber + "件が正常に作成されました");
+    return new ResponseEntity(message, HttpStatus.CREATED);
   }
 
   @PatchMapping("/todos/{id}")
