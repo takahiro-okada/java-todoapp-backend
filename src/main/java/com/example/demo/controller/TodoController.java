@@ -78,9 +78,11 @@ public class TodoController {
   }
 
   @DeleteMapping("/todos/{id}")
-  public String delete(@PathVariable int id) {
+  public ResponseEntity<Map<String, String>> delete(@PathVariable int id) {
     int deletedNumber = todoService.deleteTodo(id);
-    return deletedNumber + "件が正常に削除されました！";
+    Map<String, String> message = new HashMap<String, String>();
+    message.put("message", deletedNumber + "件が正常に削除されました");
+    return new ResponseEntity(message, HttpStatus.OK);
   }
 
   @ExceptionHandler(value = ResourceNotFoundException.class)
