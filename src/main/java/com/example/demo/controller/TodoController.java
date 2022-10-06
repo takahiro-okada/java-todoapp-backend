@@ -66,9 +66,12 @@ public class TodoController {
   }
 
   @PatchMapping("/todos/{id}")
-  public String update(@PathVariable int id, @RequestBody UpdateTodo updateTodo) {
+  public ResponseEntity<Map<String, String>> update(@PathVariable int id,
+                                                    @RequestBody UpdateTodo updateTodo) {
     int updatedNumber = todoService.update(id, updateTodo.getTitle(), updateTodo.getDescription());
-    return updatedNumber + "件が正常に更新されました！";
+    Map<String, String> message = new HashMap<String, String>();
+    message.put("message", updatedNumber + "件が正常に更新されました");
+    return new ResponseEntity(message, HttpStatus.NO_CONTENT);
   }
 
   @DeleteMapping("/todos/{id}")
