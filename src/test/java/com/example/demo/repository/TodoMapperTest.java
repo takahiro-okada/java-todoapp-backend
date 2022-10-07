@@ -23,7 +23,6 @@ class TodoMapperTest {
   @Sql(
       scripts = {"classpath:/sqlannotation/delete-todos.sql",
           "classpath:/sqlannotation/insert-todos.sql"},
-      executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD
   )
   @Transactional
   @DisplayName("すべてのユーザーが取得できること")
