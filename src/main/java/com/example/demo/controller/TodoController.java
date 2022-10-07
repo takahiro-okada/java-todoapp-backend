@@ -5,6 +5,7 @@ import com.example.demo.entity.Todo;
 import com.example.demo.entity.UpdateTodo;
 import com.example.demo.service.TodoService;
 import java.time.ZonedDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -60,21 +61,26 @@ public class TodoController {
   }
   
   @PostMapping("/todos")
-  public String create(@RequestBody CreateTodo createTodo) {
+  public ResponseEntity<Map<String, String>> create(@RequestBody CreateTodo createTodo) {
     int createdNumber = todoService.create(createTodo);
-    return createdNumber + "件が正常に投稿されました！";
+    Map<String, String> message = new HashMap<String, String>();
+    message.put("message", createdNumber + "件が正常に作成されました");
+    return new ResponseEntity(message, HttpStatus.CREATED);
   }
 
   @PatchMapping("/todos/{id}")
-  public String update(@PathVariable int id, @RequestBody UpdateTodo updateTodo) {
-    int updatedNumber = todoService.update(id, updateTodo.getTitle(), updateTodo.getDescription());
-    return updatedNumber + "件が正常に更新されました！";
+  public ResponseEntity<Map<String, String>> update(@PathVariable int id,
+                                                    @RequestBody UpdateTodo updateTodo) {
+    todoService.update(id, updateTodo.getTitle(), updateTodo.getDescription());
+    return new ResponseEntity(HttpStatus.NO_CONTENT);
   }
 
   @DeleteMapping("/todos/{id}")
-  public String delete(@PathVariable int id) {
+  public ResponseEntity<Map<String, String>> delete(@PathVariable int id) {
     int deletedNumber = todoService.deleteTodo(id);
-    return deletedNumber + "件が正常に削除されました！";
+    Map<String, String> message = new HashMap<String, String>();
+    message.put("message", deletedNumber + "件が正常に削除されました");
+    return new ResponseEntity(message, HttpStatus.OK);
   }
 
   @ExceptionHandler(value = ResourceNotFoundException.class)
