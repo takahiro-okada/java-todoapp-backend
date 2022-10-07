@@ -48,10 +48,19 @@ public class Todo {
   public int hashCode() {
     return Objects.hash(id, title, description);
   }
-
   public Todo(int id, String title, String description) {
     this.id = id;
     this.title = title;
     this.description = description;
   }
+
+  @Override
+  public String toString() {
+    return "Todo{" +
+        "id=" + id +
+        ", title='" + title + '\'' +
+        ", description='" + description + '\'' +
+        '}';
+  }
+
 }

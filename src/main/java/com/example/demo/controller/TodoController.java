@@ -58,7 +58,7 @@ public class TodoController {
     Todo todo = todoService.findById(id);
     return new TodoResponse(todo);
   }
-
+  
   @PostMapping("/todos")
   public String create(@RequestBody CreateTodo createTodo) {
     int createdNumber = todoService.create(createTodo);
