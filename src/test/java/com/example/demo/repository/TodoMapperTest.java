@@ -20,22 +20,17 @@ class TodoMapperTest {
   TodoMapper todoMapper;
 
   @Test
-  @Sql(
-      scripts = {"classpath:/sqlannotation/delete-todos.sql",
-          "classpath:/sqlannotation/insert-todos.sql"}
-  )
+  @Sql(scripts = {"classpath:/sqlannotation/delete-todos.sql",
+      "classpath:/sqlannotation/insert-todos.sql"})
   @Transactional
   void すべてのTodoが取得できること() {
     List<Todo> actual = todoMapper.findAll();
-    assertThat(actual)
-        .hasSize(3);
+    assertThat(actual).hasSize(3);
   }
 
   @Test
-  @Sql(
-      scripts = {"classpath:/sqlannotation/delete-todos.sql",
-          "classpath:/sqlannotation/insert-todos.sql"}
-  )
+  @Sql(scripts = {"classpath:/sqlannotation/delete-todos.sql",
+      "classpath:/sqlannotation/insert-todos.sql"})
   @Transactional
   void 取得したTodoの中身が一致すること() {
     List<Todo> actual = todoMapper.findAll();
@@ -46,7 +41,6 @@ class TodoMapperTest {
     expected.add(todo1);
     expected.add(todo2);
     expected.add(todo3);
-    assertThat(actual)
-        .isEqualTo(expected);
+    assertThat(actual).isEqualTo(expected);
   }
 }
