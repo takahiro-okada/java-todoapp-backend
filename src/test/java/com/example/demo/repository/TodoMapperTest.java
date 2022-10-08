@@ -25,7 +25,7 @@ class TodoMapperTest {
   @Transactional
   void すべてのTodoが取得できること() {
     List<Todo> actual = todoMapper.findAll();
-    assertThat(actual).hasSize(3);
+    assertThat(actual).hasSize(2);
   }
 
   @Test
