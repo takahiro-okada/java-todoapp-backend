@@ -25,7 +25,7 @@ class TodoMapperTest {
   @Transactional
   void すべてのTodoが取得できること() {
     List<Todo> actual = todoMapper.findAll();
-    assertThat(actual).hasSize(2);
+    assertThat(actual).hasSize(3);
   }
 
   @Test
@@ -41,6 +41,7 @@ class TodoMapperTest {
     expected.add(todo1);
     expected.add(todo2);
     expected.add(todo3);
+
     assertThat(actual).isEqualTo(expected);
   }
 }
