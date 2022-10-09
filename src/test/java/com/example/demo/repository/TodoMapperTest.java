@@ -41,6 +41,7 @@ class TodoMapperTest {
     expected.add(todo1);
     expected.add(todo2);
     expected.add(todo3);
+
     assertThat(actual).isEqualTo(expected);
   }
 }
