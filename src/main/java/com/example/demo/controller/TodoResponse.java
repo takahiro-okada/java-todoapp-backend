@@ -7,14 +7,11 @@ public class TodoResponse {
   private String title;
   private String description;
 
-  public TodoResponse(Todo todos) {
-    this.id = todos.getId();
-    this.title = todos.getTitle();
-    this.description = todos.getDescription();
-  }
+  private boolean isCompleted;
 
   public int getId() {
     return id;
+
   }
 
   public void setId(int id) {
@@ -37,9 +34,21 @@ public class TodoResponse {
     this.description = description;
   }
 
-  public TodoResponse(int id, String title, String description) {
-    this.id = id;
-    this.title = title;
-    this.description = description;
+  public boolean getCompleted() {
+    return isCompleted;
   }
+
+  public void setCompleted(boolean isCompleted) {
+    isCompleted = isCompleted;
+  }
+
+
+  public TodoResponse(Todo todos) {
+    this.id = todos.getId();
+    this.title = todos.getTitle();
+    this.description = todos.getDescription();
+    this.isCompleted = todos.isCompleted();
+  }
+
+
 }

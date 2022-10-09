@@ -7,6 +7,8 @@ public class Todo {
   private String title;
   private String description;
 
+  private boolean isCompleted;
+
   public int getId() {
     return id;
   }
@@ -31,6 +33,14 @@ public class Todo {
     this.description = description;
   }
 
+  public boolean isCompleted() {
+    return isCompleted;
+  }
+
+  public void setCompleted(boolean completed) {
+    isCompleted = completed;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -48,10 +58,12 @@ public class Todo {
   public int hashCode() {
     return Objects.hash(id, title, description);
   }
-  public Todo(int id, String title, String description) {
+
+  public Todo(int id, String title, String description, boolean isCompleted) {
     this.id = id;
     this.title = title;
     this.description = description;
+    this.isCompleted = isCompleted;
   }
 
   @Override
@@ -60,6 +72,7 @@ public class Todo {
         "id=" + id +
         ", title='" + title + '\'' +
         ", description='" + description + '\'' +
+        ", icCompleted=" + false +
         '}';
   }
 

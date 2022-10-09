@@ -35,9 +35,9 @@ class TodoMapperTest {
   void 取得したTodoの中身が一致すること() {
     List<Todo> actual = todoMapper.findAll();
     List<Todo> expected = new ArrayList<>();
-    Todo todo1 = new Todo(1, "title1", "desc1");
-    Todo todo2 = new Todo(2, "title2", "desc2");
-    Todo todo3 = new Todo(3, "title3", "desc3");
+    Todo todo1 = new Todo(1, "title1", "desc1", false);
+    Todo todo2 = new Todo(2, "title2", "desc2", false);
+    Todo todo3 = new Todo(3, "title3", "desc3", false);
     expected.add(todo1);
     expected.add(todo2);
     expected.add(todo3);
