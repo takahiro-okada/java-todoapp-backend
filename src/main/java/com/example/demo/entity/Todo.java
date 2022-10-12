@@ -7,6 +7,8 @@ public class Todo {
   private String title;
   private String description;
 
+  private boolean isCompleted;
+
   public int getId() {
     return id;
   }
@@ -17,6 +19,14 @@ public class Todo {
 
   public String getTitle() {
     return title;
+  }
+
+  public boolean isCompleted() {
+    return isCompleted;
+  }
+
+  public void setCompleted(boolean completed) {
+    isCompleted = completed;
   }
 
   public void setTitle(String title) {
@@ -48,10 +58,12 @@ public class Todo {
   public int hashCode() {
     return Objects.hash(id, title, description);
   }
-  public Todo(int id, String title, String description) {
+
+  public Todo(int id, String title, String description, boolean isCompleted) {
     this.id = id;
     this.title = title;
     this.description = description;
+    this.isCompleted = isCompleted;
   }
 
   @Override
