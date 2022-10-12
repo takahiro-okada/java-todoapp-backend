@@ -38,8 +38,8 @@ public class TodoServiceImpl implements TodoService {
   }
 
   @Override
-  public int update(int id, String title, String description) {
-    return todoMapper.updateTodo(id, title, description);
+  public int update(int id, String title, String description, boolean isCompleted) {
+    return todoMapper.updateTodo(id, title, description, isCompleted);
   }
 
   @Override

@@ -7,10 +7,21 @@ public class TodoResponse {
   private String title;
   private String description;
 
-  public TodoResponse(Todo todos) {
-    this.id = todos.getId();
-    this.title = todos.getTitle();
-    this.description = todos.getDescription();
+  private boolean isCompleted;
+
+  public TodoResponse(Todo todo) {
+    this.id = todo.getId();
+    this.title = todo.getTitle();
+    this.description = todo.getDescription();
+    this.isCompleted = todo.isCompleted();
+  }
+
+  public boolean isCompleted() {
+    return isCompleted;
+  }
+
+  public void setCompleted(boolean completed) {
+    isCompleted = completed;
   }
 
   public int getId() {
@@ -34,12 +45,6 @@ public class TodoResponse {
   }
 
   public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public TodoResponse(int id, String title, String description) {
-    this.id = id;
-    this.title = title;
     this.description = description;
   }
 }
