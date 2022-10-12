@@ -25,8 +25,8 @@ public class TodoServiceImplTest {
 
   @Test
   public void 存在するTODOのIDを指定したときに正常にTODOが返されること() throws Exception {
-    doReturn(Optional.of(new Todo(1, "タイトル", "説明"))).when(todoMapper).findById(1);
+    doReturn(Optional.of(new Todo(1, "タイトル", "説明", false))).when(todoMapper).findById(1);
     Todo actual = todoServiceImpl.findById(1);
-    assertThat(actual).isEqualTo(new Todo(1, "タイトル", "説明"));
+    assertThat(actual).isEqualTo(new Todo(1, "タイトル", "説明", false));
   }
 }

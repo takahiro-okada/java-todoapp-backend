@@ -63,17 +63,20 @@ public class TodoRestApiIntegration {
             "{" +
             "\"id\":1," +
             "\"title\":\"title1\"," +
-            "\"description\":\"desc1\"" +
+            "\"description\":\"desc1\"," +
+            "\"isCompleted\":false" +
             "}," +
             "{" +
             "\"id\":2," +
             "\"title\": \"title2\"," +
-            "\"description\":\"desc2\"" +
+            "\"description\":\"desc2\"," +
+            "\"isCompleted\":false" +
             "}," +
             "{" +
             "\"id\":3," +
             "\"title\": \"title3\"," +
-            "\"description\":\"desc3\"" +
+            "\"description\":\"desc3\"," +
+            "\"isCompleted\":false" +
             "}" +
             "]"
         , response, JSONCompareMode.STRICT);
