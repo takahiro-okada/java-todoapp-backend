@@ -5,6 +5,8 @@ public class CreateTodo {
   private String title;
   private String description;
 
+  private boolean isCompleted;
+
   public int getId() {
     return id;
   }
@@ -29,9 +31,18 @@ public class CreateTodo {
     this.description = description;
   }
 
-  public CreateTodo(int id, String title, String description) {
+  public boolean isCompleted() {
+    return isCompleted;
+  }
+
+  public void setCompleted(boolean completed) {
+    isCompleted = completed;
+  }
+
+  public CreateTodo(int id, String title, String description, boolean isCompleted) {
     this.id = id;
     this.title = title;
     this.description = description;
+    this.isCompleted = isCompleted;
   }
 }

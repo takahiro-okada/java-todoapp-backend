@@ -59,7 +59,7 @@ public class TodoController {
     Todo todo = todoService.findById(id);
     return new TodoResponse(todo);
   }
-  
+
   @PostMapping("/todos")
   public ResponseEntity<Map<String, String>> create(@RequestBody CreateTodo createTodo) {
     int createdNumber = todoService.create(createTodo);
@@ -71,7 +71,8 @@ public class TodoController {
   @PatchMapping("/todos/{id}")
   public ResponseEntity<Map<String, String>> update(@PathVariable int id,
                                                     @RequestBody UpdateTodo updateTodo) {
-    todoService.update(id, updateTodo.getTitle(), updateTodo.getDescription());
+    todoService.update(id, updateTodo.getTitle(), updateTodo.getDescription(),
+        updateTodo.isCompleted());
     return new ResponseEntity(HttpStatus.NO_CONTENT);
   }
 
