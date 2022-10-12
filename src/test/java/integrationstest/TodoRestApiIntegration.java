@@ -1,7 +1,9 @@
 package integrationstest;
 
 import com.example.demo.DemoApplication;
+import com.example.demo.controller.TodoController;
 import java.nio.charset.StandardCharsets;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
@@ -14,6 +16,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
@@ -26,13 +29,21 @@ public class TodoRestApiIntegration {
   @Autowired
   MockMvc mockMvc;
 
+  @Autowired
+  TodoController target;
+
+  @BeforeEach
+  public void setUp() {
+    mockMvc = MockMvcBuilders.standaloneSetup(target).build();
+  }
+
   @Test
   @Sql(
       scripts = {"classpath:/sqlannotation/delete-todos.sql",
           "classpath:/sqlannotation/insert-todos.sql"}
   )
   @Transactional
-  void Todoが全件取得したときにステータスコードが200であること() throws Exception {
+  void Todoが全件取得に成功すると200で内容を返すこと() throws Exception {
     mockMvc.perform(MockMvcRequestBuilders.get("/todos"))
         .andExpect(MockMvcResultMatchers.status().isOk());
   }
@@ -68,5 +79,15 @@ public class TodoRestApiIntegration {
         , response, JSONCompareMode.STRICT);
   }
 
+  @Test
+  @Sql(
+      scripts = {"classpath:/sqlannotation/delete-todos.sql",
+          "classpath:/sqlannotation/insert-todos.sql"}
+  )
+  @Transactional
+  void 存在しないtodoのidにアクセスしたときにと404とそのメッセージが返ること() throws Exception {
+    mockMvc.perform(MockMvcRequestBuilders.get("/todos/99"))
+        .andExpect(MockMvcResultMatchers.status().is(404));
+  }
 
 }
