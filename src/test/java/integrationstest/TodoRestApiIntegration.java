@@ -21,7 +21,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@Sql
+@Sql(
+    scripts = {"classpath:/sqlannotation/delete-todos.sql",
+        "classpath:/sqlannotation/insert-todos.sql"}
+)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ContextConfiguration(classes = DemoApplication.class)
 public class TodoRestApiIntegration {
@@ -32,16 +35,13 @@ public class TodoRestApiIntegration {
   @Autowired
   TodoController target;
 
+
   @BeforeEach
   public void setUp() {
     mockMvc = MockMvcBuilders.standaloneSetup(target).build();
   }
 
   @Test
-  @Sql(
-      scripts = {"classpath:/sqlannotation/delete-todos.sql",
-          "classpath:/sqlannotation/insert-todos.sql"}
-  )
   @Transactional
   void Todoが全件取得に成功すると200で内容を返すこと() throws Exception {
     mockMvc.perform(MockMvcRequestBuilders.get("/todos"))
@@ -49,10 +49,6 @@ public class TodoRestApiIntegration {
   }
 
   @Test
-  @Sql(
-      scripts = {"classpath:/sqlannotation/delete-todos.sql",
-          "classpath:/sqlannotation/insert-todos.sql"}
-  )
   @Transactional
   void 取得した全件のTodoの中身が一致していること() throws Exception {
     String response = mockMvc.perform(MockMvcRequestBuilders.get("/todos"))
@@ -83,10 +79,6 @@ public class TodoRestApiIntegration {
   }
 
   @Test
-  @Sql(
-      scripts = {"classpath:/sqlannotation/delete-todos.sql",
-          "classpath:/sqlannotation/insert-todos.sql"}
-  )
   @Transactional
   void 存在しないtodoのidにアクセスしたときにと404とそのメッセージが返ること() throws Exception {
     mockMvc.perform(MockMvcRequestBuilders.get("/todos/99"))
