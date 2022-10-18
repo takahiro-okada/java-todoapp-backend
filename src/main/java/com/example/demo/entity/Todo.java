@@ -3,10 +3,10 @@ package com.example.demo.entity;
 import java.util.Objects;
 
 public class Todo {
+
   private int id;
   private String title;
   private String description;
-
   private boolean isCompleted;
 
   public int getId() {
@@ -21,14 +21,6 @@ public class Todo {
     return title;
   }
 
-  public boolean isCompleted() {
-    return isCompleted;
-  }
-
-  public void setCompleted(boolean completed) {
-    isCompleted = completed;
-  }
-
   public void setTitle(String title) {
     this.title = title;
   }
@@ -39,6 +31,14 @@ public class Todo {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public boolean isCompleted() {
+    return isCompleted;
+  }
+
+  public void setCompleted(boolean isCompleted) {
+    isCompleted = isCompleted;
   }
 
   @Override
@@ -72,6 +72,7 @@ public class Todo {
         "id=" + id +
         ", title='" + title + '\'' +
         ", description='" + description + '\'' +
+        ", isCompleted='" + isCompleted + '\'' +
         '}';
   }
 

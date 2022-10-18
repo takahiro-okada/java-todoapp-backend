@@ -32,9 +32,11 @@ public class TodoController {
   }
 
   @GetMapping("/todos")
-  public List<TodoResponse> getAll() {
+  public List<Todo> getAll() {
     List<Todo> todos = todoService.findAll();
-    return todos.stream().map(TodoResponse::new).toList();
+    System.out.println(todos);
+    return todos;
+//    return todos.stream().map(TodoResponse::new).toList();
   }
 
   @GetMapping("/todos/{id}")
