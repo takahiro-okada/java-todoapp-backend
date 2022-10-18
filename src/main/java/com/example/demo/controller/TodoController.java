@@ -24,28 +24,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins = "*")
 public class TodoController {
+
   private final TodoService todoService;
 
   public TodoController(TodoService todoService) {
     this.todoService = todoService;
-  }
-
-  static String execute(int i) {
-    if (i % 15 == 0) {
-      return "FizzBuzz";
-    }
-
-    if (i % 3 == 0) {
-      return "Fizz";
-    }
-    if (i % 5 == 0) {
-      return "Buzz";
-    }
-    return String.valueOf(i);
-  }
-
-  static String sayHello() {
-    return "Hello";
   }
 
   @GetMapping("/todos")
