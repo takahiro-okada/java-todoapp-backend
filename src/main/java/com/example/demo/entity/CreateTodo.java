@@ -1,10 +1,10 @@
 package com.example.demo.entity;
 
 public class CreateTodo {
+  
   private int id;
   private String title;
   private String description;
-
   private boolean isCompleted;
 
   public int getId() {
