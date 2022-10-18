@@ -39,8 +39,8 @@ public class TodoResponse {
   public void setDescription(String description) {
     this.description = description;
   }
-
-  public boolean isCompleted() {
+  
+  public boolean getIsCompleted() {
     return isCompleted;
   }
 
