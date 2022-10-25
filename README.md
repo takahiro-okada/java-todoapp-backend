@@ -1,10 +1,10 @@
-## Project Name
+## プロジェクト
 TodoApp Backend
 
-## General
+## 概要
 Todoアプリを作成しました。
 
-## Technologies
+## 使用した技術
 ### Springbootの設定
 | 設定 | 設定値 |
 | ---- | ---- |
@@ -19,7 +19,20 @@ Todoアプリを作成しました。
 - Docker
 - MySQL 5.7
 
-## Setup
+## 設計書
+### ER図
+準備中
+
+### URL一覧
+準備中
+
+### API仕様
+準備中
+
+### インフラ構成図
+準備中
+
+## 設定
 1.リポジトリをローカル環境にクローン
 ```
 git clone
@@ -28,7 +41,7 @@ git clone
 ```
 docker compose up -d
 ```
-3. MySQLにログインする
+3. MySQLにログインする（DBの中身を確認したいときに使用する）
 ```
 docker compose exec db mysql -u root -p
 ```
