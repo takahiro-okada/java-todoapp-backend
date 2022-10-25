@@ -3,10 +3,10 @@ package com.example.demo.controller;
 import com.example.demo.entity.Todo;
 
 public class TodoResponse {
+
   private int id;
   private String title;
   private String description;
-
   private boolean isCompleted;
 
   public TodoResponse(Todo todo) {
@@ -14,14 +14,6 @@ public class TodoResponse {
     this.title = todo.getTitle();
     this.description = todo.getDescription();
     this.isCompleted = todo.isCompleted();
-  }
-
-  public boolean isCompleted() {
-    return isCompleted;
-  }
-
-  public void setCompleted(boolean completed) {
-    isCompleted = completed;
   }
 
   public int getId() {
@@ -47,4 +39,13 @@ public class TodoResponse {
   public void setDescription(String description) {
     this.description = description;
   }
+  
+  public boolean getIsCompleted() {
+    return isCompleted;
+  }
+
+  public void setCompleted(boolean isCompleted) {
+    isCompleted = isCompleted;
+  }
+
 }
